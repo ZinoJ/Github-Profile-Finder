@@ -1,15 +1,13 @@
 .navbar {
    padding: 1rem 0;
-   width: 60%;
-   margin: 0 auto;
+   /* width: 60%;
+   margin: 0 auto; */
    font-size: 0.8rem;
    color: aqua;
    display: flex;
    align-items: center;
    justify-content: space-between;
 }
-
-
 
 .navbar__right {
    display: flex;
@@ -20,4 +18,8 @@
 .navbar__right > img {
    border-radius: 50%;
    object-fit: cover;
+}
+
+.navbar > h2 {
+   cursor: pointer;
 }

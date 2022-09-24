@@ -1,3 +1,17 @@
 .app {
-  
+   /* max-width: 1400px;
+   margin: 0 auto; */
+}
+
+.toTop {
+   color:rgba(245, 245, 245, 0.104);
+   position: fixed;
+   bottom: 1rem;
+   right: 3rem;
+   font-size: 2rem;
+   z-index: 10;
+}
+
+.toTop:hover {
+   color: rgba(0, 255, 255, 0.13);
 }

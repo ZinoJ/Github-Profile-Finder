@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import Repository from "./Repository";
 import "./User.css";
+import {BsFillArrowUpSquareFill} from 'react-icons/bs'
 
 function User() {
    const REACT_ID = process.env.REACT_APP_CLIENT_ID
@@ -11,25 +12,35 @@ function User() {
 
   const [query, setQuery] = useState("");
   const [user, setuser] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect (() => {
-   axios.get(`https://api.github.com/users/${query}?client_id=${REACT_ID}&client_secret=${REACT_SECRET}`)
-   .then (response => setuser(response.data), setError(null))
-   .catch((error) => setError(error.message));
-   
+   if (!query == "") {
+    axios.get(`https://api.github.com/users/${query}?client_id=${REACT_ID}&client_secret=${REACT_SECRET}`)
+   .then (response => setuser(response.data))
+   .catch((error) => console.log(error.message));
+   return
+   }
   },[query])
 
-//   const handleSearch = (e) => {
-//     e.preventDefault();
-//     axios
-//       .get(
-//         `https://api.github.com/users/${query}?client_id=815f1fa8afa186cf8de3&client_secret=317149e57d0b98a09d085b4847f5cc12c6b05208`
-//       )
-//       .then((respose) => setuser(respose.data), setError(null))
-//       .catch((error) => setError(error.message));
-//     setQuery("");
-//   };
+//   useEffect (() => {
+//    try {
+//     if(!query == "") {
+//       axios.get(`https://api.github.com/users/${query}?client_id=${REACT_ID}&client_secret=${REACT_SECRET}`)
+//       .then(response => setuser(response.data))
+//     }
+//    } catch (err) {
+//     if (err.response) {
+//         console.log('123')
+//     } else if (err.request) {
+//         console.log('abc');
+//         console.log(err.request);
+//     } else {
+//         console.log(1234)
+//     }
+// }
+//   },[query])
+
+
 
   return (
     <>
@@ -40,9 +51,8 @@ function User() {
           placeholder="Search Github for users"
           onChange={(e) => setQuery(e.target.value)}
         />
-        {/* <button onClick={handleSearch}>Search</button> */}
       </div>
-      {/* {error && <div>{error}</div>} */}
+      
       
         {user && <div className="user">
           <div className="user__photo">
@@ -53,17 +63,18 @@ function User() {
             />}
           </div>
           <div className="user__details">
-            {user?.login && (<h3>Name: {user.login}</h3>) }
+            {user?.login && (<h3>Name: {user.name ? user.name : user.login}</h3>)}
             {user?.bio && <h6>{user.bio}</h6>}
             {user?.location && <h5>Location: {user.location}</h5>}
+            {user?.repos_url && <h5>Repository_url: <a href={user.html_url} target='_blank'>{user.html_url}</a></h5>}
             {user?.twitter_username && <h5>Twitter: {user.twitter_username}</h5>}
-            {user?.blog && <h5>Website: {user.blog}</h5>}
+            {user?.blog && <h5>Website: <a href={user.blog} target='_blank'>{user.blog}</a></h5>}
             {user?.followers && <h5>Followers: {user.followers}</h5>}
             {user?.following && <h5>Following: {user.following}</h5>}
           </div>
         </div>}
       <Repository query={query} />
-      <h4 className="footer">Built Circa 2022</h4>
+      <h4 className="footer">Built Circa 2022</h4> 
     </>
   );
 }

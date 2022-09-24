@@ -1,0 +1,46 @@
+.loader {
+   color: aqua;
+   text-align: center;
+   width: 100vw;
+    position:absolute;
+    top:40%;
+    left:50%;
+    margin-left:-50vw;/* half width*/ 
+}
+
+.loader > h4 {
+   color: rgba(0, 255, 255, 0.706);
+}
+
+.loader h2 {
+   overflow: hidden; /* Ensures the content is not revealed until the animation */
+   white-space: nowrap; /* Keeps the content on a single line */
+   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+   letter-spacing: .15em; /* Adjust as needed */
+   animation: 
+     typing 10s steps(20, end),
+     blink-caret 2s step-end infinite;
+ }
+ @keyframes typing {
+   from { width: 0 }
+   to { width: 100% }
+ }
+ .blink {
+   animation: blink-animation 1s steps(5, start) infinite;
+   -webkit-animation: blink-animation 2s steps(5, start) infinite;
+ }
+ @keyframes blink-animation {
+   to {
+     visibility: hidden;
+   }
+ }
+ @-webkit-keyframes blink-animation {
+   to {
+     visibility: hidden;
+   }
+ }
+
+ .loaderr {
+   margin: 0 auto;
+ }
+ 

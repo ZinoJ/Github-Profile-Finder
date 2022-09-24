@@ -1,5 +1,7 @@
 .homepage {
+   max-width: 900px;
+   margin: 0 auto;
+   padding-inline: 5%;
    display: flex;
    flex-direction: column;
-   
 }
